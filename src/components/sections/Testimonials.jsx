@@ -11,9 +11,9 @@ export function Testimonials() {
         subtitle="Pengalaman pelanggan yang telah menggunakan layanan rental mobil dari Senjaya Rent."
       />
 
-      <div className="flex overflow-x-auto pb-6 gap-6 scrollbar-hide snap-x snap-mandatory -mx-container-padding-mobile px-container-padding-mobile md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-gutter md:overflow-visible md:pb-0 md:mx-0 md:px-0">
+      <div className="flex overflow-x-auto pb-6 gap-6 scrollbar-hide snap-x snap-mandatory -mx-container-padding-mobile px-container-padding-mobile scroll-pl-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-gutter md:overflow-visible md:pb-0 md:mx-0 md:px-0">
         {testimonialsData.map((testi) => (
-          <div key={testi.id} className="w-[82vw] max-w-[320px] shrink-0 snap-start md:w-auto md:max-w-none md:shrink flex">
+          <div key={testi.id} className="w-[82vw] max-w-[320px] shrink-0 snap-start first:ml-4 last:mr-4 md:first:ml-0 md:last:mr-0 md:w-auto md:max-w-none md:shrink flex">
             <Card className="p-6 flex flex-col w-full">
               <div className="flex gap-1 mb-4 text-[#FFD600] drop-shadow-[0_0_4px_rgba(255,214,0,0.6)]">
                 {[...Array(testi.rating)].map((_, i) => (
