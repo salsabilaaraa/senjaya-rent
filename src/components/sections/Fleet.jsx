@@ -104,7 +104,7 @@ export function Fleet() {
                         Tersedia
                       </Badge>
                     ) : (
-                      <Badge variant="warning">Terpakai</Badge>
+                      <Badge variant="warning">Tidak Tersedia</Badge>
                     )}
                   </div>
                 </div>
