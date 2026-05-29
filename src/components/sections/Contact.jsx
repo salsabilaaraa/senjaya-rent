@@ -72,8 +72,6 @@ export function Contact() {
     window.open(createWhatsAppLink(textMessage), "_blank");
   };
 
-  const displayedCars = cars.length > 0 ? cars : carsData;
-
   return (
     <section id="kontak" className="py-section-gap px-container-padding-mobile md:px-container-padding-desktop max-w-[1280px] mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -149,7 +147,7 @@ export function Contact() {
                 <label className="block font-label-sm text-label-sm text-on-surface-variant mb-1">Pilih Mobil</label>
                 <select required name="car" value={formData.car} onChange={handleChange} className="w-full px-4 py-3 rounded-lg bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all appearance-none">
                   <option value="">Pilih Armada</option>
-                  {displayedCars.map((car, index) => <option key={index} value={car.name}>{car.name}</option>)}
+                  {cars.map((car, index) => <option key={index} value={car.name}>{car.name}</option>)}
                 </select>
               </div>
               <div>

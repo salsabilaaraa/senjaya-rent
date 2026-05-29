@@ -60,8 +60,6 @@ export function QuickBooking() {
     window.open(createWhatsAppLink(message), "_blank");
   };
 
-  const displayedCars = cars.length > 0 ? cars : carsData;
-
   return (
     <section className="relative z-20 -mt-12 px-container-padding-mobile md:px-container-padding-desktop max-w-[1280px] mx-auto">
       <div className="bg-surface rounded-xl p-6 shadow-level-2 border border-outline-variant/20">
@@ -78,7 +76,7 @@ export function QuickBooking() {
                 className="w-full pl-10 pr-4 py-3 rounded-lg bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-on-surface font-body-md appearance-none"
               >
                 <option value="">Semua Mobil</option>
-                {displayedCars.map((car, index) => (
+                {cars.map((car, index) => (
                   <option key={index} value={car.name}>{car.name}</option>
                 ))}
               </select>
