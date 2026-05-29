@@ -8,7 +8,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative bg-primary overflow-hidden min-h-[600px] flex items-center pt-20">
+    <section className="relative bg-primary overflow-hidden min-h-[600px] flex items-center pt-28 pb-16 md:pt-36 md:pb-24">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-transparent z-10"></div>
         <img 
@@ -36,17 +36,18 @@ export function Hero() {
             </Button>
           </div>
           
-          <div className="flex flex-wrap gap-4 md:gap-8 items-center">
-            <div className="flex items-center gap-2 text-on-primary font-label-sm">
-              <span className="material-symbols-outlined text-secondary-fixed text-[20px]" data-weight="fill">verified</span>
+          {/* Stacked vertically on mobile, row on tablet/desktop */}
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 items-start sm:items-center">
+            <div className="flex items-center gap-3 text-on-primary font-label-sm">
+              <span className="material-symbols-outlined text-secondary-fixed text-[22px]" data-weight="fill">verified</span>
               Unit Bersih & Terawat
             </div>
-            <div className="flex items-center gap-2 text-on-primary font-label-sm">
-              <span className="material-symbols-outlined text-secondary-fixed text-[20px]" data-weight="fill">payments</span>
+            <div className="flex items-center gap-3 text-on-primary font-label-sm">
+              <span className="material-symbols-outlined text-secondary-fixed text-[22px]" data-weight="fill">payments</span>
               Harga Transparan
             </div>
-            <div className="flex items-center gap-2 text-on-primary font-label-sm">
-              <span className="material-symbols-outlined text-secondary-fixed text-[20px]" data-weight="fill">person_play</span>
+            <div className="flex items-center gap-3 text-on-primary font-label-sm">
+              <span className="material-symbols-outlined text-secondary-fixed text-[22px]" data-weight="fill">person_play</span>
               Driver Profesional
             </div>
           </div>
