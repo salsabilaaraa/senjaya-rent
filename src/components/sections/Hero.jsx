@@ -34,9 +34,6 @@ export function Hero() {
             <Button variant="secondary" size="lg" onClick={handleBooking}>
               Pesan Sekarang via WhatsApp
             </Button>
-            <Button variant="outline" size="lg" className="border-outline-variant text-on-primary hover:bg-surface/10 hover:text-on-primary" asChild href="#armada">
-              Lihat Pilihan Mobil
-            </Button>
           </div>
           
           <div className="flex flex-wrap gap-4 md:gap-8 items-center">
