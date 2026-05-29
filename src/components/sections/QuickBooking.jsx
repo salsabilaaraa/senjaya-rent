@@ -1,15 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "../ui/Button";
+import { supabase } from "../../lib/supabase";
 import { carsData } from "../../data/cars";
 import { createWhatsAppLink } from "../../lib/whatsapp";
 
 export function QuickBooking() {
+  const [cars, setCars] = useState([]);
   const [formData, setFormData] = useState({
     car: "",
-    date: "",
-    duration: "",
+    dateStart: "",
+    dateEnd: "",
     service: ""
   });
+
+  useEffect(() => {
+    async function loadCars() {
+      try {
+        const { data, error } = await supabase
+          .from("cars")
+          .select("name")
+          .order("name", { ascending: true });
+        if (error) throw error;
+        setCars(data || []);
+      } catch (err) {
+        console.error("Error loading cars for quick booking:", err.message);
+      }
+    }
+    loadCars();
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -19,15 +37,30 @@ export function QuickBooking() {
   };
 
   const handleBooking = () => {
-    const { car, date, duration, service } = formData;
+    const { car, dateStart, dateEnd, service } = formData;
     let message = "Halo Senjaya Rent, saya ingin cek ketersediaan mobil:\n";
     if (car) message += `- Mobil: ${car}\n`;
-    if (date) message += `- Tanggal Mulai: ${date}\n`;
-    if (duration) message += `- Durasi: ${duration}\n`;
+    
+    let durationText = "";
+    if (dateStart && dateEnd) {
+      const start = new Date(dateStart);
+      const end = new Date(dateEnd);
+      const diffTime = Math.abs(end - start);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; // inclusive
+      durationText = `${diffDays} Hari (${dateStart} s/d ${dateEnd})`;
+    } else if (dateStart) {
+      durationText = `Mulai ${dateStart}`;
+    }
+
+    if (dateStart) message += `- Tanggal Mulai: ${dateStart}\n`;
+    if (dateEnd) message += `- Tanggal Selesai: ${dateEnd}\n`;
+    if (durationText) message += `- Durasi: ${durationText}\n`;
     if (service) message += `- Layanan: ${service}\n`;
     
     window.open(createWhatsAppLink(message), "_blank");
   };
+
+  const displayedCars = cars.length > 0 ? cars : carsData;
 
   return (
     <section className="relative z-20 -mt-12 px-container-padding-mobile md:px-container-padding-desktop max-w-[1280px] mx-auto">
@@ -45,21 +78,21 @@ export function QuickBooking() {
                 className="w-full pl-10 pr-4 py-3 rounded-lg bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-on-surface font-body-md appearance-none"
               >
                 <option value="">Semua Mobil</option>
-                {carsData.map(car => (
-                  <option key={car.id} value={car.name}>{car.name}</option>
+                {displayedCars.map((car, index) => (
+                  <option key={index} value={car.name}>{car.name}</option>
                 ))}
               </select>
             </div>
           </div>
 
           <div className="w-full">
-            <label className="block font-label-sm text-label-sm text-on-surface-variant mb-2">Tanggal Mulai Sewa</label>
+            <label className="block font-label-sm text-label-sm text-on-surface-variant mb-2">Mulai Sewa</label>
             <div className="relative">
               <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">calendar_month</span>
               <input 
                 type="date"
-                name="date"
-                value={formData.date}
+                name="dateStart"
+                value={formData.dateStart}
                 onChange={handleChange}
                 className="w-full pl-10 pr-4 py-3 rounded-lg bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-on-surface font-body-md" 
               />
@@ -67,27 +100,16 @@ export function QuickBooking() {
           </div>
 
           <div className="w-full">
-            <label className="block font-label-sm text-label-sm text-on-surface-variant mb-2">Durasi Sewa</label>
+            <label className="block font-label-sm text-label-sm text-on-surface-variant mb-2">Selesai Sewa</label>
             <div className="relative">
-              <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">schedule</span>
-              <select 
-                name="duration"
-                value={formData.duration}
+              <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">calendar_month</span>
+              <input 
+                type="date"
+                name="dateEnd"
+                value={formData.dateEnd}
                 onChange={handleChange}
-                className="w-full pl-10 pr-10 py-3 rounded-lg bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-on-surface font-body-md appearance-none"
-              >
-                <option value="">Pilih Durasi</option>
-                <option value="12 Jam">12 Jam</option>
-                <option value="24 Jam">24 Jam</option>
-                <option value="2 Hari">2 Hari</option>
-                <option value="3 Hari">3 Hari</option>
-                <option value="4 Hari">4 Hari</option>
-                <option value="5 Hari">5 Hari</option>
-                <option value="6 Hari">6 Hari</option>
-                <option value="7 Hari (1 Minggu)">7 Hari (1 Minggu)</option>
-                <option value="Lebih dari 1 Minggu">Lebih dari 1 Minggu</option>
-              </select>
-              <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
+                className="w-full pl-10 pr-4 py-3 rounded-lg bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-on-surface font-body-md" 
+              />
             </div>
           </div>
 

@@ -1,21 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SectionHeader } from "../ui/SectionHeader";
 import { Button } from "../ui/Button";
 import { siteConfig } from "../../config/site";
+import { supabase } from "../../lib/supabase";
 import { createWhatsAppLink } from "../../lib/whatsapp";
 import { carsData } from "../../data/cars";
 
 export function Contact() {
+  const [cars, setCars] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
     waNumber: "",
     startDate: "",
-    duration: "",
+    endDate: "",
     car: "",
     serviceType: "",
     destination: "",
     message: ""
   });
+
+  useEffect(() => {
+    async function loadCars() {
+      try {
+        const { data, error } = await supabase
+          .from("cars")
+          .select("name")
+          .order("name", { ascending: true });
+        if (error) throw error;
+        setCars(data || []);
+      } catch (err) {
+        console.error("Error loading cars for contact form:", err.message);
+      }
+    }
+    loadCars();
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -27,11 +45,23 @@ export function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     
+    let durationText = "";
+    if (formData.startDate && formData.endDate) {
+      const start = new Date(formData.startDate);
+      const end = new Date(formData.endDate);
+      const diffTime = Math.abs(end - start);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; // inclusive
+      durationText = `${diffDays} Hari (${formData.startDate} s/d ${formData.endDate})`;
+    } else if (formData.startDate) {
+      durationText = `Mulai ${formData.startDate}`;
+    }
+
     let textMessage = `*Halo Senjaya Rent, saya ingin memesan mobil:*\n\n`;
     textMessage += `Nama: ${formData.name}\n`;
     textMessage += `No WA: ${formData.waNumber}\n`;
     textMessage += `Mulai Sewa: ${formData.startDate}\n`;
-    textMessage += `Durasi: ${formData.duration}\n`;
+    textMessage += `Selesai Sewa: ${formData.endDate}\n`;
+    textMessage += `Durasi: ${durationText}\n`;
     textMessage += `Mobil Pilihan: ${formData.car}\n`;
     textMessage += `Layanan: ${formData.serviceType}\n`;
     textMessage += `Tujuan: ${formData.destination}\n`;
@@ -41,6 +71,8 @@ export function Contact() {
     
     window.open(createWhatsAppLink(textMessage), "_blank");
   };
+
+  const displayedCars = cars.length > 0 ? cars : carsData;
 
   return (
     <section id="kontak" className="py-section-gap px-container-padding-mobile md:px-container-padding-desktop max-w-[1280px] mx-auto">
@@ -117,7 +149,7 @@ export function Contact() {
                 <label className="block font-label-sm text-label-sm text-on-surface-variant mb-1">Pilih Mobil</label>
                 <select required name="car" value={formData.car} onChange={handleChange} className="w-full px-4 py-3 rounded-lg bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all appearance-none">
                   <option value="">Pilih Armada</option>
-                  {carsData.map(car => <option key={car.id} value={car.name}>{car.name}</option>)}
+                  {displayedCars.map((car, index) => <option key={index} value={car.name}>{car.name}</option>)}
                 </select>
               </div>
               <div>
@@ -136,28 +168,8 @@ export function Contact() {
                 <input required name="startDate" value={formData.startDate} onChange={handleChange} type="date" className="w-full px-4 py-3 rounded-lg bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
               </div>
               <div>
-                <label className="block font-label-sm text-label-sm text-on-surface-variant mb-1">Durasi Sewa</label>
-                <div className="relative">
-                  <select 
-                    required 
-                    name="duration" 
-                    value={formData.duration} 
-                    onChange={handleChange} 
-                    className="w-full px-4 pr-10 py-3 rounded-lg bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all appearance-none"
-                  >
-                    <option value="">Pilih Durasi</option>
-                    <option value="12 Jam">12 Jam</option>
-                    <option value="24 Jam">24 Jam</option>
-                    <option value="2 Hari">2 Hari</option>
-                    <option value="3 Hari">3 Hari</option>
-                    <option value="4 Hari">4 Hari</option>
-                    <option value="5 Hari">5 Hari</option>
-                    <option value="6 Hari">6 Hari</option>
-                    <option value="7 Hari (1 Minggu)">7 Hari (1 Minggu)</option>
-                    <option value="Lebih dari 1 Minggu">Lebih dari 1 Minggu</option>
-                  </select>
-                  <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
-                </div>
+                <label className="block font-label-sm text-label-sm text-on-surface-variant mb-1">Tanggal Selesai</label>
+                <input required name="endDate" value={formData.endDate} onChange={handleChange} type="date" className="w-full px-4 py-3 rounded-lg bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
               </div>
             </div>
 
