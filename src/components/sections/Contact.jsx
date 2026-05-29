@@ -31,7 +31,7 @@ export function Contact() {
     textMessage += `Nama: ${formData.name}\n`;
     textMessage += `No WA: ${formData.waNumber}\n`;
     textMessage += `Mulai Sewa: ${formData.startDate}\n`;
-    textMessage += `Durasi: ${formData.duration} hari\n`;
+    textMessage += `Durasi: ${formData.duration}\n`;
     textMessage += `Mobil Pilihan: ${formData.car}\n`;
     textMessage += `Layanan: ${formData.serviceType}\n`;
     textMessage += `Tujuan: ${formData.destination}\n`;
@@ -136,8 +136,28 @@ export function Contact() {
                 <input required name="startDate" value={formData.startDate} onChange={handleChange} type="date" className="w-full px-4 py-3 rounded-lg bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
               </div>
               <div>
-                <label className="block font-label-sm text-label-sm text-on-surface-variant mb-1">Durasi (Hari)</label>
-                <input required name="duration" value={formData.duration} onChange={handleChange} type="number" min="1" className="w-full px-4 py-3 rounded-lg bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
+                <label className="block font-label-sm text-label-sm text-on-surface-variant mb-1">Durasi Sewa</label>
+                <div className="relative">
+                  <select 
+                    required 
+                    name="duration" 
+                    value={formData.duration} 
+                    onChange={handleChange} 
+                    className="w-full px-4 pr-10 py-3 rounded-lg bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all appearance-none"
+                  >
+                    <option value="">Pilih Durasi</option>
+                    <option value="12 Jam">12 Jam</option>
+                    <option value="24 Jam">24 Jam</option>
+                    <option value="2 Hari">2 Hari</option>
+                    <option value="3 Hari">3 Hari</option>
+                    <option value="4 Hari">4 Hari</option>
+                    <option value="5 Hari">5 Hari</option>
+                    <option value="6 Hari">6 Hari</option>
+                    <option value="7 Hari (1 Minggu)">7 Hari (1 Minggu)</option>
+                    <option value="Lebih dari 1 Minggu">Lebih dari 1 Minggu</option>
+                  </select>
+                  <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
+                </div>
               </div>
             </div>
 

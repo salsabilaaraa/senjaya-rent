@@ -6,11 +6,11 @@ export const Button = React.forwardRef(
     const Component = asChild ? "a" : "button";
     
     const variants = {
-      primary: "bg-primary text-on-primary hover:bg-opacity-90",
-      secondary: "bg-secondary-container text-on-secondary-container hover:opacity-90 font-bold",
-      outline: "border-2 border-primary text-primary hover:bg-primary hover:text-on-primary",
-      ghost: "bg-transparent text-primary hover:bg-surface-variant",
-      accent: "bg-[#FFD600] text-primary hover:opacity-90 font-bold", // For WhatsApp
+      primary: "bg-primary text-on-primary hover:bg-primary/95 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]",
+      secondary: "bg-secondary-container text-on-secondary-container hover:bg-secondary-container/90 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] font-bold",
+      outline: "border-2 border-primary text-primary hover:bg-primary hover:text-on-primary hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]",
+      ghost: "bg-transparent text-primary hover:bg-surface-variant hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]",
+      accent: "bg-[#FFD600] text-primary hover:bg-[#FFE033] hover:shadow-lg hover:shadow-[#FFD600]/20 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] font-bold", // For WhatsApp
     };
 
     const sizes = {
@@ -24,7 +24,7 @@ export const Button = React.forwardRef(
       <Component
         ref={ref}
         className={clsx(
-          "inline-flex items-center justify-center rounded-lg transition-all duration-300",
+          "inline-flex items-center justify-center rounded-lg transition-all duration-300 cursor-pointer select-none",
           variants[variant],
           sizes[size],
           className

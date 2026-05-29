@@ -1,68 +1,206 @@
 export const carsData = [
   {
-    id: "innova-reborn",
-    name: "Toyota Innova Reborn",
+    id: "pajero",
+    name: "Mitsubishi Pajero Sport",
     category: "Premium",
-    type: "Premium MPV",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAYdaAEf3hl4HWDBbsq-6yNYVA-8f4aAdpNSaVx1jFHKGimd07jSil6sbtyJuUvKzBZKgU4LABjWl0paQndjbu4IaXTgZqHsusZ-Qrdy0KIqGrDHmaKvfsHU9YsXWChNJL4vuDFyHdMHPPwAO_DKeNRHRB7-Uh-1Dz6sJdnmnSwtZAaa0sZZHprYw14Wyyi8_YtivH37GioSrq0bK01tCxUgw8hA2QouBy7lIijRGGx0S35qLTQQKcv2we-AkxaveIJyU1h1kzIjw",
+    type: "Premium SUV",
+    image: "/cars/pajero.png",
     seats: 7,
-    transmission: "Automatic",
-    price: 650000,
-    isAvailable: true,
-  },
-  {
-    id: "avanza",
-    name: "Toyota Avanza",
-    category: "MPV",
-    type: "Family MPV",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCumdplpPSWZtj_1xm1vgBa4Hsh2AmSud-22jAihGq45o-dpsB5EeDB2S6FVtC2kJecd5ivyLeLJKG63BjUJf27ubiUxO9OFmltQw9ZlXH7P6QH9ldNIPfklhEgWYUCIZahiss143L24M38uQV4T63EYJJxtBE7G5m58Re-Olhu7o9v2JYyF1nFkDQwztA_pgTkHzDQjlM5sULCW7m09mrzeoVo24NsJqEoDGD9LaXVZ8Mfi8lqg9Frcs3fGdalSfQMoXpiP2GE6g",
-    seats: 7,
-    transmission: "Manual/Auto",
-    price: 350000,
-    isAvailable: true,
-  },
-  {
-    id: "hiace",
-    name: "Toyota HiAce Premio",
-    category: "Rombongan",
-    type: "Minibus Eksekutif",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBv-2xVJ5fqrxSmbA9bUAE8V-D1d6dMEAtsxn1oRfyJ5RxO1RBmhypCh2lTVE6uQCtiZaRgfANtQoRH3VGKGkW15R7bYaWpr_iyl-BfrXEOUvsyEaUdT189I-bqFAPMs5w-byODxZ8dHu-BCcoOEJSktpZvPEk0wCdal6cZma-PJU9qta-apFp7hykVHML4AxxdDZR2hT0FA5dgTn-dDAKyrEeaeS9axSmWbYPGx-wi_Yk23Q7HpFp9GYY0y709rU9T_FkwQOaApA",
-    seats: 14,
-    transmission: "Manual",
-    price: 1200000,
-    isAvailable: true,
-  },
-  {
-    id: "xpander",
-    name: "Mitsubishi Xpander",
-    category: "MPV",
-    type: "Family MPV",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBCYcT1aC3E0h6m8h1WJ7o3X3E6Hj9pXg1y1bY9zWq8n6G3J6yL1Q8oP0qC2uQx2yB8sU5T6D8v4O9b7oZ6jX1pG7k9O3L9R0rB4qQ4wY7aV0kS1eC3jG9pX8lH9rK1oF7vU4yZ6hT0W9bC3qD2aL7jE5pV8nF6uY3bX9wZ5jG1oV8vN5yU7aF9qD3bM8lY6jE4pZ9vT1s",
-    seats: 7,
-    transmission: "Automatic",
-    price: 450000,
-    isAvailable: true,
-  },
-  {
-    id: "brio",
-    name: "Honda Brio",
-    category: "City Car",
-    type: "City Car",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA2x4c9H0y1zB3v6X8jW9q7D5m2Y1pK4n7F0tV8bC5uS9eG3rR6hJ1lM9aN0wY7oQ4uP2xV5sT8dF6oZ9kL1jE7mB3yX8rG0pW4qA7tH1vN6sD9eF4aR2uC6oY8iJ1lM9aN0wY7oQ4uP2xV5sT8dF6oZ9kL1jE7mB3yX8rG0pW4qA7tH1vN6sD9eF4aR2uC6oY8i",
-    seats: 5,
-    transmission: "Automatic",
-    price: 300000,
-    isAvailable: true,
+    transmission: "Matic (8-Speed)",
+    price12h: 500000,
+    price24h: 600000,
+    price: 600000, // Fallback
+    specs: {
+      mesin: "2.400cc (4N15) 4-Silinder MIVEC Turbo Diesel",
+      headUnit: "8 inci Touchscreen (Smartphone Link Display)"
+    },
+    isAvailable: true
   },
   {
     id: "fortuner",
     name: "Toyota Fortuner",
     category: "Premium",
     type: "Premium SUV",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD9y3H1q8C0xP2v5Z7mJ6r4F8b1W3oK5nY0eT7aL4uS9wG2pM6hY1jN8bV0sX6mQ3tP1uR4yV7tE5oZ9jL1kH8nC4yX9qF0pW3rA6tJ1vM5sE8dG4aR2tC5nY7hJ1lM9aN0wY7oQ4uP2xV5sT8dF6oZ9kL1jE7mB3yX8rG0pW4qA7tH1vN6sD9eF4aR2uC6oY8i",
+    image: "/cars/fortuner.png",
     seats: 7,
-    transmission: "Automatic",
-    price: 1500000,
-    isAvailable: true,
+    transmission: "Matic (6-Speed)",
+    price12h: 500000,
+    price24h: 600000,
+    price: 600000, // Fallback
+    specs: {
+      mesin: "2.800cc (1GD-FTV) 4-Silinder Turbo Diesel",
+      headUnit: "9 inci Touchscreen (NFC & Smartphone Connectivity)"
+    },
+    isAvailable: true
+  },
+  {
+    id: "innova-reborn",
+    name: "Toyota Innova Reborn",
+    category: "Premium",
+    type: "Premium MPV",
+    image: "/cars/innova_reborn.png",
+    seats: 7,
+    transmission: "Matic (6-Speed)",
+    price12h: 350000,
+    price24h: 450000,
+    price: 450000, // Fallback
+    specs: {
+      mesin: "2.400cc (2GD-FTV) Turbo Diesel",
+      headUnit: "9 inci Touchscreen (NFC untuk saldo e-toll)"
+    },
+    isAvailable: true
+  },
+  {
+    id: "innova-zenix",
+    name: "Toyota Innova Zenix",
+    category: "Premium",
+    type: "Premium Hybrid MPV",
+    image: "/cars/innova_zenix.png",
+    seats: 7,
+    transmission: "CVT (Matic) K-120",
+    price12h: 450000,
+    price24h: 550000,
+    price: 550000, // Fallback
+    specs: {
+      mesin: "2.000cc (M20A-FKS) Bensin / Hybrid (M20A-FXS)",
+      headUnit: "10 inci Floating Touchscreen (Smartphone Connectivity)"
+    },
+    isAvailable: true
+  },
+  {
+    id: "mercy",
+    name: "Mercedes-Benz C-Class",
+    category: "Premium",
+    type: "Premium Sedan",
+    image: "/cars/mercy.png",
+    seats: 5,
+    transmission: "Manual",
+    price12h: 300000,
+    price24h: 400000,
+    price: 400000, // Fallback
+    specs: {
+      mesin: "1.800cc 4-Silinder Kompressor (Supercharger)",
+      headUnit: "Standard Audio 20 (Radio/CD Player)"
+    },
+    isAvailable: true
+  },
+  {
+    id: "vw-polo",
+    name: "Volkswagen Polo",
+    category: "City Car",
+    type: "Hatchback Premium",
+    image: "/cars/vw_polo.png",
+    seats: 5,
+    transmission: "7-Speed Dual Clutch (DSG)",
+    price12h: 150000,
+    price24h: 250000,
+    price: 250000, // Fallback
+    specs: {
+      mesin: "1.200cc 4-Silinder Turbocharger (TSI)",
+      headUnit: "6.5 inci Touchscreen (Composition Media)"
+    },
+    isAvailable: true
+  },
+  {
+    id: "avanza",
+    name: "Toyota Avanza",
+    category: "MPV",
+    type: "Family MPV",
+    image: "/cars/avanza.png",
+    seats: 7,
+    transmission: "CVT (Matic)",
+    price12h: 250000,
+    price24h: 350000,
+    price: 350000, // Fallback
+    specs: {
+      mesin: "1.500cc (2NR-VE) 4-Silinder Dual VVT-i",
+      headUnit: "9 inci Floating Touchscreen"
+    },
+    isAvailable: true
+  },
+  {
+    id: "xenia",
+    name: "Daihatsu Xenia",
+    category: "MPV",
+    type: "Family MPV",
+    image: "/cars/xenia.png",
+    seats: 7,
+    transmission: "Manual",
+    price12h: 250000,
+    price24h: 350000,
+    price: 350000, // Fallback
+    specs: {
+      mesin: "1.500cc (2NR-VE) 4-Silinder Dual VVT-i",
+      headUnit: "9 inci Floating Touchscreen"
+    },
+    isAvailable: true
+  },
+  {
+    id: "calya",
+    name: "Toyota Calya",
+    category: "MPV",
+    type: "LCGC MPV",
+    image: "/cars/calya.png",
+    seats: 7,
+    transmission: "Manual",
+    price12h: 150000,
+    price24h: 250000,
+    price: 250000, // Fallback
+    specs: {
+      mesin: "1.200cc (3NR-VE) 4-Silinder Dual VVT-i",
+      headUnit: "Standard Audio System"
+    },
+    isAvailable: true
+  },
+  {
+    id: "agya",
+    name: "Toyota Agya",
+    category: "City Car",
+    type: "LCGC City Car",
+    image: "/cars/agya.png",
+    seats: 5,
+    transmission: "Matic (4-Speed)",
+    price12h: 150000,
+    price24h: 250000,
+    price: 250000, // Fallback
+    specs: {
+      mesin: "1.200cc (1NR-VE) 4-Silinder Dual VVT-i",
+      headUnit: "7 inci Touchscreen"
+    },
+    isAvailable: true
+  },
+  {
+    id: "brio",
+    name: "Honda Brio RS",
+    category: "City Car",
+    type: "City Car",
+    image: "/cars/brio.png",
+    seats: 5,
+    transmission: "CVT (Matic)",
+    price12h: 150000,
+    price24h: 250000,
+    price: 250000, // Fallback
+    specs: {
+      mesin: "1.200cc (L12B) 4-Silinder i-VTEC",
+      headUnit: "6.1 inci Touchscreen (Tipe RS)"
+    },
+    isAvailable: true
+  },
+  {
+    id: "rocky",
+    name: "Daihatsu Rocky",
+    category: "City Car",
+    type: "Compact SUV",
+    image: "/cars/rocky.png",
+    seats: 5,
+    transmission: "CVT (Matic)",
+    price12h: 150000,
+    price24h: 250000,
+    price: 250000, // Fallback
+    specs: {
+      mesin: "1.000cc (1KR-VET) 3-Silinder Turbocharger",
+      headUnit: "9 inci Floating Touchscreen"
+    },
+    isAvailable: true
   }
 ];

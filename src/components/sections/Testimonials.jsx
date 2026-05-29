@@ -14,7 +14,7 @@ export function Testimonials() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {testimonialsData.map((testi) => (
           <Card key={testi.id} className="p-6 flex flex-col">
-            <div className="flex gap-1 mb-4 text-secondary">
+            <div className="flex gap-1 mb-4 text-[#FFD600] drop-shadow-[0_0_4px_rgba(255,214,0,0.6)]">
               {[...Array(testi.rating)].map((_, i) => (
                 <span key={i} className="material-symbols-outlined" data-weight="fill">star</span>
               ))}

@@ -1,16 +1,14 @@
 import React from "react";
 import { siteConfig } from "../../config/site";
+import logoFooterImg from "../../assets/logo_footer.png";
 
 export function Footer() {
   return (
     <footer className="bg-primary w-full pt-section-gap pb-8 mt-auto text-on-primary">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter px-container-padding-mobile md:px-container-padding-desktop max-w-[1280px] mx-auto mb-12">
         <div className="md:col-span-1">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="material-symbols-outlined text-secondary-fixed text-[32px]">directions_car</span>
-            <span className="font-display-lg text-headline-sm text-secondary-fixed block">
-              {siteConfig.brandName}
-            </span>
+          <div className="mb-4">
+            <img src={logoFooterImg} alt={`${siteConfig.brandName} Logo`} className="h-14 md:h-16 w-auto object-contain" />
           </div>
           <p className="font-body-md text-body-md text-surface-variant opacity-80">
             {siteConfig.tagline}
@@ -44,10 +42,7 @@ export function Footer() {
               <span className="material-symbols-outlined text-secondary-fixed text-[20px]">call</span> 
               <span>{siteConfig.phone}</span>
             </li>
-            <li className="flex items-start gap-2 font-body-md text-body-md text-surface-variant opacity-80">
-              <span className="material-symbols-outlined text-secondary-fixed text-[20px]">mail</span> 
-              <span>{siteConfig.email}</span>
-            </li>
+
             <li className="flex items-start gap-2 font-body-md text-body-md text-surface-variant opacity-80">
               <span className="material-symbols-outlined text-secondary-fixed text-[20px] shrink-0">location_on</span> 
               <a href={siteConfig.mapLink} target="_blank" rel="noopener noreferrer" className="hover:text-secondary-fixed hover:opacity-100 transition-opacity">

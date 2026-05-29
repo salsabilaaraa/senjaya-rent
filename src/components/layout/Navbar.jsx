@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { siteConfig } from "../../config/site";
 import { createWhatsAppLink } from "../../lib/whatsapp";
 import { Button } from "../ui/Button";
+import logoImg from "../../assets/logo.png";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -34,40 +35,50 @@ export function Navbar() {
         isScrolled ? "bg-surface shadow-sm" : "bg-surface/90 backdrop-blur-md"
       }`}
     >
-      <div className="flex justify-between items-center px-container-padding-mobile md:px-container-padding-desktop h-20 max-w-[1280px] mx-auto">
-        <div className="flex items-center gap-4">
-          <span className="material-symbols-outlined text-primary text-[32px]">directions_car</span>
-          <span className="font-display-lg text-headline-sm text-primary tracking-tight">
-            {siteConfig.brandName}
-          </span>
+      <div className="flex justify-between items-center px-container-padding-mobile md:px-container-padding-desktop h-20 max-w-[1280px] mx-auto w-full">
+        {/* Left Column (Logo on mobile, Logo on desktop aligned to the far-left) */}
+        <div className="flex justify-start items-center lg:hidden">
+          <a href="#" className="flex items-center hover:opacity-90 transition-opacity duration-300 shrink-0">
+            <img src={logoImg} alt={`${siteConfig.brandName} Logo`} className="h-12 w-auto object-contain" />
+          </a>
+        </div>
+        <div className="hidden lg:flex justify-start items-center lg:w-[220px] shrink-0">
+          <a href="#" className="flex items-center hover:opacity-90 transition-opacity duration-300 shrink-0">
+            <img src={logoImg} alt={`${siteConfig.brandName} Logo`} className="h-12 md:h-14 w-auto object-contain shrink-0" />
+          </a>
         </div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-6">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-on-surface font-label-md text-label-md hover:text-secondary transition-colors duration-300"
-            >
-              {link.name}
-            </a>
-          ))}
-        </nav>
-
-        <div className="hidden lg:block">
-          <Button variant="secondary" onClick={handleBooking}>
-            Booking via WhatsApp
-          </Button>
+        {/* Center Column (Navigation Menu centered in the absolute center of desktop viewport) */}
+        <div className="hidden lg:flex justify-center items-center flex-grow">
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-8 shrink-0">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-on-surface font-label-md text-label-md hover:text-secondary transition-colors duration-300 whitespace-nowrap"
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          className="lg:hidden text-primary p-2"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        {/* Right Column (WhatsApp Button on desktop, Toggle on mobile) */}
+        <div className="flex justify-end items-center lg:w-[220px] shrink-0">
+          <div className="hidden lg:block">
+            <Button variant="secondary" onClick={handleBooking}>
+              Booking via WhatsApp
+            </Button>
+          </div>
+          {/* Mobile Menu Toggle */}
+          <button
+            className="lg:hidden text-primary p-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Navigation */}

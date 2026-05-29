@@ -23,7 +23,7 @@ export function QuickBooking() {
     let message = "Halo Senjaya Rent, saya ingin cek ketersediaan mobil:\n";
     if (car) message += `- Mobil: ${car}\n`;
     if (date) message += `- Tanggal Mulai: ${date}\n`;
-    if (duration) message += `- Durasi: ${duration} hari\n`;
+    if (duration) message += `- Durasi: ${duration}\n`;
     if (service) message += `- Layanan: ${service}\n`;
     
     window.open(createWhatsAppLink(message), "_blank");
@@ -67,18 +67,27 @@ export function QuickBooking() {
           </div>
 
           <div className="w-full">
-            <label className="block font-label-sm text-label-sm text-on-surface-variant mb-2">Durasi (Hari)</label>
+            <label className="block font-label-sm text-label-sm text-on-surface-variant mb-2">Durasi Sewa</label>
             <div className="relative">
-              <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">schedule</span>
-              <input 
-                type="number"
-                min="1"
-                placeholder="Misal: 3"
+              <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">schedule</span>
+              <select 
                 name="duration"
                 value={formData.duration}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 rounded-lg bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-on-surface font-body-md" 
-              />
+                className="w-full pl-10 pr-10 py-3 rounded-lg bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-on-surface font-body-md appearance-none"
+              >
+                <option value="">Pilih Durasi</option>
+                <option value="12 Jam">12 Jam</option>
+                <option value="24 Jam">24 Jam</option>
+                <option value="2 Hari">2 Hari</option>
+                <option value="3 Hari">3 Hari</option>
+                <option value="4 Hari">4 Hari</option>
+                <option value="5 Hari">5 Hari</option>
+                <option value="6 Hari">6 Hari</option>
+                <option value="7 Hari (1 Minggu)">7 Hari (1 Minggu)</option>
+                <option value="Lebih dari 1 Minggu">Lebih dari 1 Minggu</option>
+              </select>
+              <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
             </div>
           </div>
 
