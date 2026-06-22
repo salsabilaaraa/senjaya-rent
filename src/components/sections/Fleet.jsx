@@ -140,14 +140,8 @@ export function Fleet() {
                     </div>
                   )}
                   
-                  <div className="mt-auto pt-4 border-t border-outline-variant flex justify-between items-center">
-                    <div className="flex flex-col gap-0.5">
-                      <span className="text-[10px] text-on-surface-variant">Harga Sewa</span>
-                      <span className="text-sm text-primary font-bold">
-                        <strong className="text-[18px]">{formatRupiah(car.price || car.price24h)}</strong> <span className="text-[10px] text-on-surface-variant font-medium">/ Hari</span>
-                      </span>
-                    </div>
-                    <Button variant="primary" size="sm" onClick={() => handleBooking(car.name)}>
+                  <div className="mt-auto pt-4 border-t border-outline-variant">
+                    <Button variant="primary" size="sm" className="w-full" onClick={() => handleBooking(car.name)}>
                       Pesan
                     </Button>
                   </div>
