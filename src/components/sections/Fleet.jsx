@@ -7,7 +7,7 @@ import { supabase } from "../../lib/supabase";
 import { createWhatsAppLink } from "../../lib/whatsapp";
 import clsx from "clsx";
 
-const TABS = ["Semua", "City Car", "MPV", "Premium", "Rombongan"];
+const TABS = ["Semua", "City Car", "MPV", "Premium", "Rombongan", "Best Seller"];
 
 export function Fleet() {
   const [activeTab, setActiveTab] = useState("Semua");
@@ -33,9 +33,11 @@ export function Fleet() {
     loadCars();
   }, []);
 
-  const filteredCars = activeTab === "Semua" 
-    ? cars 
-    : cars.filter(car => car.category === activeTab);
+  const filteredCars = (() => {
+    if (activeTab === "Semua") return cars;
+    if (activeTab === "Best Seller") return cars.filter(car => car.is_best_seller);
+    return cars.filter(car => car.category === activeTab);
+  })();
 
   const handleBooking = (carName) => {
     window.open(createWhatsAppLink(`Halo Senjaya Rent, saya ingin booking mobil ${carName}.`), "_blank");
